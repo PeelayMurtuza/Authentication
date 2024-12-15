@@ -2,12 +2,11 @@ const User = require('../models/userModel');
 const jwt = require('jsonwebtoken');
 
 
-// Generate JWT Token
 const generateToken = (id) => {
     return jwt.sign({ id }, process.env.JWT_SECRET, { expiresIn: '1h' });
 };
 
-// Signup Controller
+
 const signup = async (req, res) => {
     const { name, email, password } = req.body;
 
@@ -30,7 +29,7 @@ const signup = async (req, res) => {
     }
 };
 
-// Signin Controller
+
 const signin = async (req, res) => {
     const { email, password } = req.body;
 
@@ -52,11 +51,11 @@ const signin = async (req, res) => {
     }
 };
 
-// Get all users
+
 const getAllUsers = async (req, res) => {
     try {
-      const users = await User.find(); // Fetch all users from the database
-      res.status(200).json(users); // Respond with the list of users
+      const users = await User.find(); 
+      res.status(200).json(users); 
     } catch (error) {
       res.status(500).json({ message: 'Internal server error', error: error.message });
     }
